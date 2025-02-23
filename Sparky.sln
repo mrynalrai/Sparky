@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{067D8371-865
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sparky", "src\Sparky\Sparky.csproj", "{0A823234-5B02-4821-9B1C-AAC0FDB0E58B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C067710F-007D-403C-8C22-438D017CC5E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sparky.MSTest", "test\Sparky.MSTest\Sparky.MSTest.csproj", "{80166938-589A-4B21-AF62-7B4C6A828B01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,8 +24,13 @@ Global
 		{0A823234-5B02-4821-9B1C-AAC0FDB0E58B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A823234-5B02-4821-9B1C-AAC0FDB0E58B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A823234-5B02-4821-9B1C-AAC0FDB0E58B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80166938-589A-4B21-AF62-7B4C6A828B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80166938-589A-4B21-AF62-7B4C6A828B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80166938-589A-4B21-AF62-7B4C6A828B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80166938-589A-4B21-AF62-7B4C6A828B01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0A823234-5B02-4821-9B1C-AAC0FDB0E58B} = {067D8371-8652-4E4B-805F-D629A3F41555}
+		{80166938-589A-4B21-AF62-7B4C6A828B01} = {C067710F-007D-403C-8C22-438D017CC5E6}
 	EndGlobalSection
 EndGlobal
