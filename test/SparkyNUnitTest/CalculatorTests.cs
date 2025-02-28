@@ -10,7 +10,7 @@ namespace SparkyNUnitTest
     {
         [Test]  // Marks a method of a TestFixture that represents a test.
         // MethodUnderTest_Scenario_ExpectedResult()
-        public void AddNumbers_InputTwoIntegers_ReturnCorrectSum()
+        public void AddNumbers_InputTwoNumbers_ReturnCorrectSum()
         {
             // Arrange
             Calculator calculator = new ();
@@ -27,7 +27,7 @@ namespace SparkyNUnitTest
         [TestCase(3)]
         [TestCase(5)]
         [TestCase(-3)]
-        public void IsOddNumber_InputOddInteger_ReturnTrue(int num)
+        public void IsOddNumber_InputOddNumber_ReturnTrue(int num)
         {
             Calculator calculator = new ();
             bool result = calculator.IsOddNumber(num);
@@ -39,12 +39,22 @@ namespace SparkyNUnitTest
         [TestCase(0)]
         [TestCase(2)]
         [TestCase(-2)]
-        public void IsOddNumber_InputEvenInteger_ReturnFalse(int num)
+        public void IsOddNumber_InputEvenNumber_ReturnFalse(int num)
         {
             Calculator calculator = new ();
             bool result = calculator.IsOddNumber(num);
             Assert.That(result, Is.EqualTo(false));
             ClassicAssert.False(result);
+        }
+
+        [Test]
+        [TestCase(4, ExpectedResult = false)]
+        [TestCase(7, ExpectedResult = true)]
+        public bool IsOddNumber_InputNumber_ReturnTrueIfOdd(int num)
+        {
+            Calculator calculator = new ();
+            bool result = calculator.IsOddNumber(num);
+            return result;
         }
     }
 }
