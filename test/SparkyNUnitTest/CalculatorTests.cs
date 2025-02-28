@@ -24,19 +24,25 @@ namespace SparkyNUnitTest
         }
 
         [Test]
-        public void IsOddNumber_InputOddInteger_ReturnTrue()
+        [TestCase(3)]
+        [TestCase(5)]
+        [TestCase(-3)]
+        public void IsOddNumber_InputOddInteger_ReturnTrue(int num)
         {
             Calculator calculator = new ();
-            bool result = calculator.IsOddNumber(5);
+            bool result = calculator.IsOddNumber(num);
             Assert.That(result, Is.EqualTo(true));
             ClassicAssert.IsTrue(result);
         }
 
         [Test]
-        public void IsOddNumber_InputEvenInteger_ReturnFalse()
+        [TestCase(0)]
+        [TestCase(2)]
+        [TestCase(-2)]
+        public void IsOddNumber_InputEvenInteger_ReturnFalse(int num)
         {
             Calculator calculator = new ();
-            bool result = calculator.IsOddNumber(4);
+            bool result = calculator.IsOddNumber(num);
             Assert.That(result, Is.EqualTo(false));
             ClassicAssert.False(result);
         }
