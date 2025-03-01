@@ -24,6 +24,20 @@ namespace SparkyNUnitTest
         }
 
         [Test]
+        // Not using TestCase because ExpectedResult parameter does not accept tolerance
+        public void AddNumbers_InputTwoDoubleNumbers_ReturnCorrectSum()
+        {
+            Calculator calculator = new ();
+            double result = calculator.AddNumbers(10.5, 5.6);
+            Assert.That(result, Is.EqualTo(16.1).Within(0.1));
+            ClassicAssert.AreEqual(result, 16.1, 0.1);
+
+            double result2 = calculator.AddNumbers(-16.1, 5.6);
+            Assert.That(result2, Is.EqualTo(-10.5).Within(0.1));
+            ClassicAssert.AreEqual(result2, -10.5, 0.1);
+        }
+
+        [Test]
         [TestCase(3)]
         [TestCase(5)]
         [TestCase(-3)]
