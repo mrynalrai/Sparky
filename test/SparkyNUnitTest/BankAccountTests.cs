@@ -23,7 +23,12 @@ namespace SparkyNUnitTest
             // logBookMock.Setup(l => l.LogBalanceAfterWithdrawal(false, It.IsAny<double>())).Returns(false);
             logBookMock.Setup(l => l.LogBalanceAfterWithdrawal(It.IsAny<bool>(), It.IsAny<double>()))
                 .Returns((bool isSuccess, double amount) => isSuccess);
-
+            logBookMock.Setup(u => u.LogWithOutputResult(It.IsAny<string>(),out It.Ref<string>.IsAny))
+                .Returns((string input, out string outputStr) => 
+                {
+                    outputStr = "Hello " + input;
+                    return true;
+                });
             bankAccount = new (logBookMock.Object);
         }
 
@@ -31,6 +36,9 @@ namespace SparkyNUnitTest
         [TestCase(101.1)]
         public void Deposit_DepositDouble_ReturnTrue(double amount)
         {
+            // Arrange
+            Customer customer = new();
+            logBookMock.Setup(u => u.LogWithRefObj(ref customer)).Returns(true);
             // Act
             var result = bankAccount.Deposit(amount);
             // Assert
@@ -44,8 +52,15 @@ namespace SparkyNUnitTest
         [TestCase(500.0, 600.0, ExpectedResult = false)]
         public bool Withdraw_WithdrawDouble_ReturnCorrectTransactionStatus(double initialBalance, double amount)
         {
+            // Arrange
+            Customer customer = new();
+            logBookMock.Setup(u => u.LogWithRefObj(ref customer)).Returns(true);
             bankAccount.Deposit(initialBalance);
+            
+            // Act
             var result = bankAccount.Withdraw(amount);
+
+            // Assert
             logBookMock.Verify(l => l.LogBalanceAfterWithdrawal(It.IsAny<bool>(), It.IsAny<double>()), Times.AtLeastOnce, "LogBalanceAfterWithdrawal should be called on Withdraw.");
             return result;
         }

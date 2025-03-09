@@ -5,6 +5,8 @@ namespace Sparky
         void Log(string message);
         bool LogToDb(string log);
         bool LogBalanceAfterWithdrawal(bool isSuccess, double balance);
+        bool LogWithOutputResult(string str, out string outputStr);
+        bool LogWithRefObj(ref Customer customer);
     }
     public class LogBook : ILogBook
     {
@@ -27,6 +29,17 @@ namespace Sparky
         public bool LogToDb(string log)
         {
             Console.WriteLine(log);
+            return true;
+        }
+
+        public bool LogWithOutputResult(string str, out string outputStr)
+        {
+            outputStr = "Hello " + str;
+            return true;
+        }
+
+        public bool LogWithRefObj(ref Customer customer)
+        {
             return true;
         }
     }
