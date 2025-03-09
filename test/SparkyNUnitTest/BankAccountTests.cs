@@ -17,9 +17,12 @@ namespace SparkyNUnitTest
             // bankAccount = new (new LogBook());  // This is not unit testing anymore. In addition to 'BankAccount', we are also testing 'LogBook'. Hence this is integration testing          
             logBookMock = new Mock<ILogBook>();
             logBookMock.Setup(l => l.Log(It.IsAny<string>()));
-            logBookMock.Setup(l => l.LogToDb(It.IsAny<string>())).Returns(true);
-            logBookMock.Setup(l => l.LogBalanceAfterWithdrawal(true, It.IsAny<double>())).Returns(true);
-            logBookMock.Setup(l => l.LogBalanceAfterWithdrawal(false, It.IsAny<double>())).Returns(false);
+            logBookMock.Setup(l => l.LogToDb(It.IsAny<string>()))
+                .Returns(true);
+            // logBookMock.Setup(l => l.LogBalanceAfterWithdrawal(true, It.IsAny<double>())).Returns(true);
+            // logBookMock.Setup(l => l.LogBalanceAfterWithdrawal(false, It.IsAny<double>())).Returns(false);
+            logBookMock.Setup(l => l.LogBalanceAfterWithdrawal(It.IsAny<bool>(), It.IsAny<double>()))
+                .Returns((bool isSuccess, double amount) => isSuccess);
 
             bankAccount = new (logBookMock.Object);
         }
