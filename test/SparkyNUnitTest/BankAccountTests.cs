@@ -14,8 +14,11 @@ namespace SparkyNUnitTest
         public void Init()
         {
             // Arrange
-            // bankAccount = new (new LogBook());  // This is not unit testing anymore. In addition to 'BankAccount', we are also testing 'LogBook'. Hence this is integration testing          
+            // Properties
             logBookMock = new Mock<ILogBook>();
+            logBookMock.Setup(l => l.LogSeverityLevel).Returns(2);
+            logBookMock.Setup(l => l.LogType).Returns("Information");
+            // Methods
             logBookMock.Setup(l => l.Log(It.IsAny<string>()));
             logBookMock.Setup(l => l.LogToDb(It.IsAny<string>()))
                 .Returns(true);
@@ -29,6 +32,8 @@ namespace SparkyNUnitTest
                     outputStr = "Hello " + input;
                     return true;
                 });
+            
+            // bankAccount = new (new LogBook());  // This is not unit testing anymore. In addition to 'BankAccount', we are also testing 'LogBook'. Hence this is integration testing          
             bankAccount = new (logBookMock.Object);
         }
 

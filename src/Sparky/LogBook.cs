@@ -2,6 +2,8 @@ namespace Sparky
 {
     public interface ILogBook 
     {
+        public int LogSeverityLevel { get; set; }
+        public string LogType { get; set; }
         void Log(string message);
         bool LogToDb(string log);
         bool LogBalanceAfterWithdrawal(bool isSuccess, double balance);
@@ -10,6 +12,9 @@ namespace Sparky
     }
     public class LogBook : ILogBook
     {
+        public int LogSeverityLevel { get; set; }
+        public required string LogType { get; set; }
+
         public void Log(string message)
         {
             Console.WriteLine(message);
