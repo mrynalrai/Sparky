@@ -4,7 +4,7 @@ namespace Sparky
     {
         private readonly ILogBook _logBook;
 
-        public double Balance { get; set; }
+        private double Balance { get; set; }
         public BankAccount(ILogBook logBook)
         {
             Balance = 0;
@@ -20,14 +20,15 @@ namespace Sparky
 
         public bool Withdraw(double amount)
         {
+            bool isSuccess = false;
             if (Balance >= amount)
             {
+                _logBook.LogToDb($"Withdrew amount: {amount}");
                 Balance -= amount;
-                _logBook.Log($"Withdrew amount: {amount}");
-                return true;                
+                isSuccess = true;             
             }
-                
-            return false;
+            _logBook.LogBalanceAfterWithdrawal(isSuccess, Balance);
+            return isSuccess;
         }
 
         public double GetBalance()
